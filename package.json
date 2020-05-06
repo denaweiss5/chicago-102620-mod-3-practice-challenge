@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "core": "mocha test/core_test.js",
+    "adv": "mocha test/advanced_test.js"
+  }
+}
