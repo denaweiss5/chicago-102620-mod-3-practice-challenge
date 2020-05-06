@@ -4,14 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dance Rader</title>
+  <link rel="stylesheet" type="text/css" href="./styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="./styles/main.css">
+  <script src="src/index.js"></script>
 </head>
 <body>
+  <header>
+    <h1>Dance Rader</h1>
+    <!-- ADVANCED DELIVERABLE: MENU OF DANCERS -->
+    <nav>
+      <ul>
+        <li>Dancer name as link</li>
+        <li>Another dancer name as link</li>
+      </ul>
+    </nav>
+    <!-- END ADVANCED DELIVERABLE -->
+  </header>
   
+  <main>
+    <section class="details">
+      <img src="assets/placeholder.png" id="dancer-img">
+      <h2 id="dancer-name">Dancer Name Here</h2>
+      <div class="likes">
+        <button id="unlike"><img src="assets/increase_likes.png"></button>
+        <button id="like"><img src="assets/increase_likes.png"></button>
+        <span id="like-count">0</span>
+      </div>
+      <p id="dancer-description">Description goes here.</p>
+    </section>
+
+    <section class="feedback">
+      <form>
+        <textarea id="new-feedback"></textarea>
+        <input type="submit" value="Leave Feedback">
+      </form>
+      <ul>
+        <li>Feedback one</li>
+        <li>Feedback two</li>
+      </ul>
+    </section>
+  </main>
 </body>
 </html>
-
-<!--  
-- See the first dancer's details, including their **name, image, description, and likes**, when the page loads
-- Like the dancer and **still see the new number of likes when reloading the page**
-- Leave feedback for the dancer (no persistence needed, will disappear on refresh)
--->
