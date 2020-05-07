@@ -30,7 +30,7 @@ The endpoints you will need are:
 
 As a user, I can:
 
-- See the first dancer's details, including their **name, image, description, and likes**, when the page loads
+- See the first dancer's details, including their **name, image, description, likes, and feedback**, when the page loads
 - Like the dancer and **still see the new number of likes when reloading the page**
 - Leave feedback for the dancer (no persistence needed, will disappear on refresh)
 
