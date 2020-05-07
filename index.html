@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dance Rader</title>
+  <link href="https://fonts.googleapis.com/css?family=Russo+One|Ubuntu:300,400,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./styles/reset.css">
   <link rel="stylesheet" type="text/css" href="./styles/main.css">
   <script src="src/index.js"></script>
@@ -27,18 +28,18 @@
       <h2 id="dancer-name">Dancer Name Here</h2>
       <div class="likes">
         <button id="unlike"><img src="assets/increase_likes.png"></button>
-        <button id="like"><img src="assets/increase_likes.png"></button>
         <span id="like-count">0</span>
+        <button id="like"><img src="assets/increase_likes.png"></button>
       </div>
       <p id="dancer-description">Description goes here.</p>
     </section>
 
     <section class="feedback">
       <form>
-        <textarea id="new-feedback"></textarea>
-        <input type="submit" value="Leave Feedback">
+        <input type="text" placeholder="Add your feedback" id="new-feedback">
+        <input type="submit" value=">">
       </form>
-      
+
       <ul>
         <li>Feedback one</li>
         <li>Feedback two</li>
