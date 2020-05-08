@@ -1,10 +1,14 @@
-var chai = require('chai');
+const puppeteer = require('puppeteer');
+const { expect } = require('chai');
+const path = require('path');
+const htmlFilePath = `file:${path.join(__dirname, '/../index.html')}`;
+const json = require('../db.json');
 
-// var assert = require('assert');
-// describe('Array', function() {
-//   describe('#indexOf()', function() {
-//     it('should return -1 when the value is not present', function() {
-//       assert.equal([1, 2, 3].indexOf(4), -1);
-//     });
-//   });
-// });
+let browser;
+let page;
+
+before(async () => {
+  browser = await puppeteer.launch();
+  page = await browser.newPage();
+  await page.goto(htmlFilePath);
+});

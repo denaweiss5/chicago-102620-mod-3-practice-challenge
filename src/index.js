@@ -70,6 +70,13 @@ feedbackForm.addEventListener('submit', e => {
   const input = document.querySelector('input[type="text"]');
   const feedback = input.value;
 
-  input.textContent = '';
+  input.value = '';
   makeSingleFeedback(feedback);
+
+  // ADVANCED: PERSIST FEEDBACK (this is the easiest but not safest way to do it)
+  const feedbackLIs = document.querySelectorAll('.feedback ul li');
+  const feedbackArray = Array.from(feedbackLIs).map(el => el.textContent);
+  patchDancer(1, { feedback: feedbackArray });
 });
+
+
