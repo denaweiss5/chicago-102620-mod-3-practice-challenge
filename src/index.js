@@ -50,14 +50,19 @@ getSingleDancer(1)
 // LIKE DANCER
 const likeButton = document.querySelector('#like');
 
+// HELPER METHOD FOR UPDATING LIKES
+const updateLikes = likes => {
+  patchDancer(1, { likes });
+  showDancerLikes(likes);
+};
+
 likeButton.addEventListener('click', () => {
   let likes = null;
 
   getSingleDancer(1)
     .then(json => {
       likes = ++json.likes;
-      patchDancer(1, { likes: likes });
-      showDancerLikes(likes);
+      updateLikes(likes);
     });
 });
 
@@ -91,4 +96,17 @@ const feedbackUL = document.querySelector('.feedback ul');
 feedbackUL.addEventListener('click', e => {
   e.target.remove();
   patchFeedback();
+});
+
+// ADVANCED: UNLIKE DANCER
+const unlikeButton = document.querySelector('#unlike');
+
+unlikeButton.addEventListener('click', () => {
+  let likes = null;
+
+  getSingleDancer(1)
+    .then(json => {
+      likes = --json.likes;
+      updateLikes(likes);
+    });
 });
