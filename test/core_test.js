@@ -14,8 +14,8 @@ before(async () => {
   await page.goto(htmlFilePath);
 });
 
-describe('View first dancer', () => {
-  it('has the name Carlton in an h2', async () => {
+describe('Core Features', () => {
+  it('shows the name in an h2', async () => {
     const h2 = await page.evaluate(() => document.querySelector('#dancer-name').textContent.trim());
 
     expect(h2).to.equal(firstDancer.name);
