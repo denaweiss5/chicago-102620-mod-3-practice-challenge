@@ -74,9 +74,21 @@ feedbackForm.addEventListener('submit', e => {
   makeSingleFeedback(feedback);
 
   // ADVANCED: PERSIST FEEDBACK (this is the easiest but not safest way to do it)
-  const feedbackLIs = document.querySelectorAll('.feedback ul li');
-  const feedbackArray = Array.from(feedbackLIs).map(el => el.textContent);
-  patchDancer(1, { feedback: feedbackArray });
+  patchFeedback();
 });
 
+// ADVANCED: HELPER METHOD FOR UPDATING FEEDBACK
+const patchFeedback = () => {
+  const feedbackLIs = document.querySelectorAll('.feedback ul li');
+  const feedbackArray = Array.from(feedbackLIs).map(el => el.textContent);
 
+  patchDancer(1, { feedback: feedbackArray });
+};
+
+// ADVANCED: DELETE FEEDBACK (the ugly and lazy way)
+const feedbackUL = document.querySelector('.feedback ul');
+
+feedbackUL.addEventListener('click', e => {
+  e.target.remove();
+  patchFeedback();
+});
