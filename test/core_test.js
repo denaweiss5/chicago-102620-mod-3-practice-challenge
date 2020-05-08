@@ -8,7 +8,7 @@ const firstDancer = json.dancers[0];
 let browser;
 let page;
 
-before(async () => {
+beforeEach(async () => {
   browser = await puppeteer.launch();
   page = await browser.newPage();
   await page.goto(htmlFilePath);
