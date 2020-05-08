@@ -34,10 +34,9 @@ describe('View first dancer', () => {
   }).timeout(10000);
 
   it('shows the feedback in LIs', async () => {
-    const feedback = await page.evaluate(() => document.querySelectorAll('.feedback ul li'));
-    const array = Array.from(feedback).map(el => el.textContent);
+    const feedback = await page.evaluate(() => Array.from(document.querySelectorAll('.feedback ul li')).map(el => el.textContent));
 
-    array.forEach((fb, idx) => {
+    feedback.forEach((fb, idx) => {
       expect(fb).to.equal(firstDancer.feedback[idx]);
     });
   }).timeout(10000);
