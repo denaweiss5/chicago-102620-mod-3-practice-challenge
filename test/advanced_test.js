@@ -23,7 +23,7 @@ describe('Advanced Features', () => {
     const lastFeedback = await page.evaluate(() => document.querySelector('.feedback ul li:last-of-type').textContent.trim());
 
     expect(lastFeedback).to.equal(feedback);
-  }).timeout(10000);
+  });
 
   it('persistently deletes feedback when clicking on a feedback LI', async () => {
     const oldFeedback = await page.evaluate(() => Array.from(document.querySelectorAll('.feedback ul li')).map(el => el.textContent));
@@ -35,7 +35,7 @@ describe('Advanced Features', () => {
 
     expect(currentFeedback[currentFeedback.length - 1]).to.not.equal(oldFeedback[oldFeedback.length - 1]);
     expect(currentFeedback.length).to.not.equal(oldFeedback.length);
-  }).timeout(10000);
+  });
 
   it('decreases the likes (persistently) when clicking a button', async () => {
     const oldLikes = await page.evaluate(() => document.querySelector('#like-count').textContent.trim());
@@ -46,5 +46,19 @@ describe('Advanced Features', () => {
     const likes = await page.evaluate(() => document.querySelector('#like-count').textContent.trim());
 
     expect(parseInt(likes, 10)).to.equal(parseInt(oldLikes, 10) - 1);
-  }).timeout(10000);
+  });
+
+  it('it does not let likes go below 0', async () => {
+    const oldLikes = await page.evaluate(() => document.querySelector('#like-count').textContent.trim());
+
+    for (let i = 0; i < parseInt(oldLikes, 10) + 2; ++i) {
+      await page.click('#unlike');
+    }
+
+    await page.goto(htmlFilePath, { waitUntil: 'networkidle2' });
+
+    const likes = await page.evaluate(() => document.querySelector('#like-count').textContent.trim());
+
+    expect(parseInt(likes, 10)).to.equal(0);
+  });
 });

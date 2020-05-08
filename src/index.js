@@ -107,6 +107,6 @@ unlikeButton.addEventListener('click', () => {
   getSingleDancer(1)
     .then(json => {
       likes = --json.likes;
-      updateLikes(likes);
+      if (likes >= 0) updateLikes(likes);
     });
 });
