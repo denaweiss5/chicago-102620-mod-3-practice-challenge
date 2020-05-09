@@ -1,8 +1,8 @@
 {
   "scripts": {
     "json": "json-server --watch db.json --port 3000",
-    "core": "npm run json & mocha test/core_test.js",
-    "adv": "npm run json & mocha test/advanced_test.js"
+    "core": "npm run json & mocha --timeout 10000 test/core_test.js",
+    "adv": "npm run json & mocha --timeout 10000 test/advanced_test.js"
   },
   "dependencies": {
     "mocha": "^5.0.4",
