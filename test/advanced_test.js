@@ -60,6 +60,7 @@ describe('Advanced Features', () => {
     const likes = await page.evaluate(() => document.querySelector('#like-count').textContent.trim());
 
     expect(parseInt(likes, 10)).to.equal(0);
+    
     await page.evaluate(() => fetch('http://localhost:3000/dancers/1', {
       method: "PATCH",
       headers: {
