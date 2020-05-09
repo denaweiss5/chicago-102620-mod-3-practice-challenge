@@ -10,6 +10,10 @@ This practice code challenge includes a test suite. Keep in mind that the actual
 - `npm run core`
 - `npm run adv`
 
+To exit the tests, type `^C`. Doing so should free up port 3000 from all processes.
+
+> Note: If exiting the tests doesn't free up the port (Error: could not bind to port 3000), run the following command: `lsof -i :3000`, locate the PID, and then run `kill -9 <PID>`.
+
 ## Setup
 
 - Fork and clone this repository
