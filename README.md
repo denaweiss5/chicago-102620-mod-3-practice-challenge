@@ -13,6 +13,7 @@ This practice code challenge includes a test suite. Keep in mind that the actual
 ## Setup
 
 - Fork and clone this repository
+- Run `npm install`
 - Run `json-server --watch db.json` to get the backend started
 - Open `index.html` in your browser
 
