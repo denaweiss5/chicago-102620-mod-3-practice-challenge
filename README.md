@@ -17,6 +17,7 @@ To exit the tests, type `^C`. Doing so should free up port 3000 from all process
 ## Setup
 
 - Fork and clone this repository
+- Run `npm install`
 - Run `json-server --watch db.json` or `npm run json` to get the backend started
 - Open `index.html` in your browser
 
