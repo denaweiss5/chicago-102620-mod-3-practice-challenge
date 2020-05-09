@@ -45,7 +45,7 @@ As a user, I can:
 - Still see the feedback after refreshing the page
 - Delete feedback (persistent) (For tests to work, make the LI delete on click instead of adding a button)
 - Reduce the likes by clicking on a button (persistent) without going below 0 likes
-- See a menu of dancers. Clicking a dancer's name should update the page to show that dancer's details
+- See a menu of dancers. Clicking a dancer's name should update the page to show that dancer's details (it's not necessary for patch or post requests to work)
 
 ## Rubric
 

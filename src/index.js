@@ -38,7 +38,8 @@ const showDancerFeedback = feedback => {
   feedback.forEach(makeSingleFeedback);
 };
 
-getSingleDancer(1)
+const updateDancerDetails = id => {
+  getSingleDancer(id)
   .then(json => {
     showDancerImage(json.image);
     showDancerName(json.name);
@@ -46,6 +47,9 @@ getSingleDancer(1)
     showDancerDescription(json.description);
     showDancerFeedback(json.feedback);
   });
+};
+
+updateDancerDetails(1);
   
 // LIKE DANCER
 const likeButton = document.querySelector('#like');
@@ -110,3 +114,24 @@ unlikeButton.addEventListener('click', () => {
       if (likes >= 0) updateLikes(likes);
     });
 });
+
+// ADVANCED: SHOW MENU OF DANCERS
+const createMenu = array => {
+  const menu = document.querySelector('nav ul');
+  
+  menu.textContent = '';
+  array.forEach(dancer => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+
+    btn.textContent = dancer.name;
+    btn.addEventListener('click', () => {
+      updateDancerDetails(dancer.id);
+    });
+    li.appendChild(btn);
+    menu.appendChild(li);
+  });
+};
+
+getAllDancers()
+  .then(createMenu);

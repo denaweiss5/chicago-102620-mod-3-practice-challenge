@@ -48,7 +48,7 @@ describe('Advanced Features', () => {
     expect(parseInt(likes, 10)).to.equal(parseInt(oldLikes, 10) - 1);
   });
 
-  it('it does not let likes go below 0', async () => {
+  it('does not let likes go below 0', async () => {
     const oldLikes = await page.evaluate(() => document.querySelector('#like-count').textContent.trim());
 
     for (let i = 0; i < parseInt(oldLikes, 10) + 2; ++i) {
@@ -60,5 +60,30 @@ describe('Advanced Features', () => {
     const likes = await page.evaluate(() => document.querySelector('#like-count').textContent.trim());
 
     expect(parseInt(likes, 10)).to.equal(0);
+    await page.evaluate(() => fetch('http://localhost:3000/dancers/1', {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ likes: 23 })
+    }));
+  });
+
+  it('creates a menu of all dancers', async () => {
+    const numLIs = await page.evaluate(() => document.querySelectorAll('nav ul li').length);
+    const json = require('../db.json');
+
+    expect(numLIs).to.equal(json.dancers.length);
+  });
+
+  it('updates the dancer details when clicking on a dancer in the menu', async () => {
+    const json = require('../db.json');
+    const secondDancer = json.dancers[1];
+
+    await page.click('nav ul li:nth-of-type(2) button');
+
+    const dancerName = await page.evaluate(() => document.querySelector('#dancer-name').textContent);
+
+    expect(dancerName).to.equal(secondDancer.name);
   });
 });
