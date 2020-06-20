@@ -5,11 +5,10 @@
       "name": "Carlton",
       "image": "https://i.imgur.com/iM8ybeC.gif",
       "description": "20 years of experience in all forms of dance. Known for shiny outfits.",
-      "likes": 24,
+      "likes": 23,
       "feedback": [
         "Nice moves",
         "Never stop never stopping",
-        "testing test test",
         "testing test test"
       ]
     },
@@ -18,9 +17,10 @@
       "name": "Celery Man",
       "image": "https://media.giphy.com/media/WaZiz4UsM2lhu/giphy.gif",
       "description": "Dances with celery sticks on occasion, but not always.",
-      "likes": 2,
+      "likes": 8,
       "feedback": [
-        "This is giving me a headache."
+        "This is giving me a headache.",
+        "Ouch"
       ]
     },
     {
@@ -39,7 +39,7 @@
       "name": "The Caffeinated",
       "image": "https://66.media.tumblr.com/371e373f59e4d0bee26c24027ca3c817/tumblr_mlo0tmyH6m1rt8i4vo1_500.gif",
       "description": "Brings the energy to the party...always.",
-      "likes": 8,
+      "likes": 10,
       "feedback": [
         "Come to my birthday party please",
         "I like this",
