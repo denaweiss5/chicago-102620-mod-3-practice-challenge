@@ -67,10 +67,10 @@ const updateLikes = (id, likes) => {
 // ADVANCED: HELPER METHOD FOR UPDATING FEEDBACK
 const patchFeedback = () => {
   const feedbackLIs = document.querySelectorAll('.feedback ul li');
-  const feedbackArray = Array.from(feedbackLIs).map(el => el.textContent);
+  const feedback = Array.from(feedbackLIs).map(el => el.textContent);
   const id = getDancerId(document.querySelector('.details'));
 
-  patchDancer(id, { feedback: feedbackArray });
+  patchDancer(id, { feedback });
 };
 
 // ADVANCED: SHOW MENU OF DANCERS
