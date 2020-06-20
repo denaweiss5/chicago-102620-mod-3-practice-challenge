@@ -3,7 +3,6 @@ const domain = "http://localhost:3000/dancers";
 const basicFetch = (url, options={}) => {
   return fetch(url, options)
     .then(res => res.json())
-    .catch(console.log)
 };
 
 const getAllDancers = () => basicFetch(domain);

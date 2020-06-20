@@ -1,72 +1,29 @@
-// DISPLAY FETCHED DATA ON SINGLE DANCER
-const showDancerImage = url => {
-  const dancerImg = document.querySelector('#dancer-img');
-
-  dancerImg.src = url;
-};
-
-const showDancerName = name => {
-  const dancerName = document.querySelector('#dancer-name');
-
-  dancerName.textContent = name;
-};
-
-const showDancerLikes = likes => {
-  const dancerLikes = document.querySelector('#like-count');
-
-  dancerLikes.textContent = likes;
-};
-
-const showDancerDescription = description => {
-  const dancerDescription = document.querySelector('#dancer-description');
-
-  dancerDescription.textContent = description;
-};
-
-const makeSingleFeedback = feedback => {
-  const feedbackUL = document.querySelector('.feedback ul');
-  const li = document.createElement('li');
-
-  li.textContent = feedback;
-  feedbackUL.appendChild(li);
-};
-
-const showDancerFeedback = feedback => {
-  const feedbackUL = document.querySelector('.feedback ul');
-
-  feedbackUL.textContent = '';
-  feedback.forEach(makeSingleFeedback);
-};
-
-const updateDancerDetails = id => {
-  getSingleDancer(id)
-  .then(json => {
-    showDancerImage(json.image);
-    showDancerName(json.name);
-    showDancerLikes(json.likes);
-    showDancerDescription(json.description);
-    showDancerFeedback(json.feedback);
-  });
-};
-
+// SHOW FIRST DANCER ON PAGE LOAD
 updateDancerDetails(1);
-  
-// LIKE DANCER
-const likeButton = document.querySelector('#like');
 
-// HELPER METHOD FOR UPDATING LIKES
-const updateLikes = likes => {
-  patchDancer(1, { likes });
-  showDancerLikes(likes);
-};
+// LIKE OR UNLIKE DANCER
+const likeDiv = document.querySelector('.likes');
 
-likeButton.addEventListener('click', () => {
-  let likes = null;
+likeDiv.addEventListener('click', e => {
+  const id = getDancerId(document.querySelector('.details'));
+  const targetId = e.target.parentElement.id;
+  let likes = 0;
 
-  getSingleDancer(1)
+  if (!targetId) return;
+
+  if (targetId === 'like') {
+    likes++;
+  } else if (targetId === 'unlike') {
+    likes--;
+  }
+
+  getSingleDancer(id)
     .then(json => {
-      likes = ++json.likes;
-      updateLikes(likes);
+      likes += json.likes;
+
+      if (likes > -1) {
+        updateLikes(id, likes);
+      }
     });
 });
 
@@ -80,19 +37,11 @@ feedbackForm.addEventListener('submit', e => {
   const feedback = input.value;
 
   input.value = '';
-  makeSingleFeedback(feedback);
+  makeSingleFeedback(feedback); // OPTIMISTIC
 
-  // ADVANCED: PERSIST FEEDBACK (this is the easiest but not safest way to do it)
+  // ADVANCED: PERSIST FEEDBACK (this is not the safest way to do it)
   patchFeedback();
 });
-
-// ADVANCED: HELPER METHOD FOR UPDATING FEEDBACK
-const patchFeedback = () => {
-  const feedbackLIs = document.querySelectorAll('.feedback ul li');
-  const feedbackArray = Array.from(feedbackLIs).map(el => el.textContent);
-
-  patchDancer(1, { feedback: feedbackArray });
-};
 
 // ADVANCED: DELETE FEEDBACK (the ugly and lazy way)
 const feedbackUL = document.querySelector('.feedback ul');
@@ -102,36 +51,16 @@ feedbackUL.addEventListener('click', e => {
   patchFeedback();
 });
 
-// ADVANCED: UNLIKE DANCER
-const unlikeButton = document.querySelector('#unlike');
-
-unlikeButton.addEventListener('click', () => {
-  let likes = null;
-
-  getSingleDancer(1)
-    .then(json => {
-      likes = --json.likes;
-      if (likes >= 0) updateLikes(likes);
-    });
-});
-
-// ADVANCED: SHOW MENU OF DANCERS
-const createMenu = array => {
-  const menu = document.querySelector('nav ul');
-  
-  menu.textContent = '';
-  array.forEach(dancer => {
-    const li = document.createElement('li');
-    const btn = document.createElement('button');
-
-    btn.textContent = dancer.name;
-    btn.addEventListener('click', () => {
-      updateDancerDetails(dancer.id);
-    });
-    li.appendChild(btn);
-    menu.appendChild(li);
-  });
-};
-
+// ADVANCED: MENU OF DANCERS
 getAllDancers()
   .then(createMenu);
+
+const dancerMenu = document.querySelector('nav ul');
+
+dancerMenu.addEventListener('click', e => {
+  const id = getDancerId(e.target);
+
+  if (id) {
+    updateDancerDetails(id);
+  }
+});
