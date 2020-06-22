@@ -48,13 +48,13 @@ const showDancerFeedback = feedback => {
 
 const updateDancerDetails = id => {
   getSingleDancer(id)
-  .then(json => {
-    addDancerId(document.querySelector('.details'), json.id);
-    showDancerImage(json.image);
-    showDancerName(json.name);
-    showDancerLikes(json.likes);
-    showDancerDescription(json.description);
-    showDancerFeedback(json.feedback);
+  .then(({ id, image, name, likes, description, feedback }) => {
+    addDancerId(document.querySelector('.details'), id);
+    showDancerImage(image);
+    showDancerName(name);
+    showDancerLikes(likes);
+    showDancerDescription(description);
+    showDancerFeedback(feedback);
   });
 };
 
@@ -78,12 +78,12 @@ const createMenu = array => {
   const menu = document.querySelector('nav ul');
   
   menu.textContent = '';
-  array.forEach(dancer => {
+  array.forEach(({ name, id }) => {
     const li = document.createElement('li');
     const btn = document.createElement('button');
 
-    btn.textContent = dancer.name;
-    addDancerId(btn, dancer.id);
+    btn.textContent = name;
+    addDancerId(btn, id);
     li.appendChild(btn);
     menu.appendChild(li);
   });

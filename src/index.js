@@ -36,7 +36,7 @@ feedbackForm.addEventListener('submit', e => {
   const input = document.querySelector('input[type="text"]');
   const feedback = input.value;
 
-  input.value = '';
+  e.currentTarget.reset();
   makeSingleFeedback(feedback); // OPTIMISTIC
 
   // ADVANCED: PERSIST FEEDBACK (this is not the safest way to do it)
