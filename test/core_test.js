@@ -37,7 +37,7 @@ describe('Core Features', () => {
   it('shows the feedback in LIs', async () => {
     const feedback = await page.evaluate(() => Array.from(document.querySelectorAll('.feedback ul li')).map(el => el.textContent));
 
-    expect(feedback).to.deep.equal(firstDancerFeedback);
+    expect(feedback).to.deep.equal(firstDancerFeedback.map(fb => fb.feedback));
   });
 
   it('increases the likes (persistently) when clicking a button', async () => {
