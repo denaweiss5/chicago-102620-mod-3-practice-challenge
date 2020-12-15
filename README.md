@@ -12,7 +12,7 @@ This practice code challenge includes a test suite. Keep in mind that the actual
 
 To exit the tests, type `^C`. Doing so should free up port 3000 from all processes.
 
-> Note: If exiting the tests doesn't free up the port (Error: could not bind to port 3000), run the following command: `lsof -i :3000`, locate the PID, and then run `kill -9 <PID>`.
+> Note: If exiting the tests doesn't free up the port (Error: could not bind to port 3000), run the following command: `lsof -i :3000`, locate the PID, and then run `kill -9 <PID>`. Alternatively, you can try `killall node`.
 
 ## Setup
 
@@ -25,11 +25,16 @@ To exit the tests, type `^C`. Doing so should free up port 3000 from all process
 
 Your base URL for your API will be: http://localhost:3000
 
-The endpoints you will need are:
+The endpoints are:
 
-- GET `/dancers/[:id]` (start with /dancers/1) (Alternatively, you can get all dancers and then select one)
+- GET **one** dancer with their feedback included: `/dancers/[:id]?_embed=feedback`
+    - Will respond with one of the dancers with all of their their feedback embedded
+- GET **all** dancers with their feedback included: `/dancers?_embed=feedback`
+    - Will respond with all of the dancers with each of their feedback embedded in each dancer object
 - PATCH `/dancers/[:id]`
-- GET `/dancers` (for Advanced Deliverables)
+    - Will respond with the updated dancer object if successful
+- DELETE `/dancers/[:id]`
+    - Responds with nothing, so nothing
 
 ## Core Deliverables
 
@@ -38,6 +43,8 @@ As a user, I can:
 - See the first dancer's details, including their **name, image, description, likes, and feedback**, when the page loads
 - Like the dancer and **still see the new number of likes when reloading the page**
 - Leave feedback for the dancer (no persistence needed, will disappear on refresh)
+
+Please write your code in the files inside of the `src` directory. `api.js` is loaded before `index.js`. You can put all of your code in `index.js` if you like, but if you want to separate your code into multiple files, you may.
 
 ## Advanced Deliverables
 
