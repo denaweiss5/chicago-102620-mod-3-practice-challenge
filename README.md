@@ -35,6 +35,8 @@ The endpoints are:
     - Will respond with the updated dancer object if successful
 - DELETE `/dancers/[:id]`
     - Responds with nothing, so nothing
+- POST `/feedback`
+    - Responds with the feedback if it posted successfully
 
 ## Core Deliverables
 
@@ -54,7 +56,7 @@ These deliverables are not required, but if you have the extra time, they are a 
 
 As a user, I can:
 
-- Still see the feedback after refreshing the page
+- Still see the feedback after refreshing the page (Once you implement this, the core test for feedback may fail)
 - Delete feedback (persistent) (For tests to work, make the LI delete on click instead of adding a button)
 - Reduce the likes by clicking on a button (persistent) without going below 0 likes
 - See a menu of dancers. Clicking a dancer's name should update the page to show that dancer's details (it's not necessary for patch or post requests to work)
