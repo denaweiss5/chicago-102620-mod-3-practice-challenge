@@ -4,6 +4,7 @@ const path = require('path');
 const htmlFilePath = `file:${path.join(__dirname, '/../index.html')}`;
 const json = require('../db.json');
 const firstDancer = json.dancers[0];
+const firstDancerFeedback = json.feedback.filter(fb => fb.dancerId === firstDancer.id);
 
 let browser;
 let page;
@@ -36,9 +37,7 @@ describe('Core Features', () => {
   it('shows the feedback in LIs', async () => {
     const feedback = await page.evaluate(() => Array.from(document.querySelectorAll('.feedback ul li')).map(el => el.textContent));
 
-    feedback.forEach((fb, idx) => {
-      expect(fb).to.equal(firstDancer.feedback[idx]);
-    });
+    expect(feedback).to.deep.equal(firstDancerFeedback);
   });
 
   it('increases the likes (persistently) when clicking a button', async () => {
