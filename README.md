@@ -33,7 +33,7 @@ The endpoints are:
     - Will respond with all of the dancers with each of their feedback embedded in each dancer object
 - PATCH `/dancers/[:id]`
     - Will respond with the updated dancer object if successful
-- DELETE `/dancers/[:id]`
+- DELETE `/feedback/[:id]`
     - Responds with nothing, so nothing
 - POST `/feedback`
     - Responds with the feedback if it posted successfully
